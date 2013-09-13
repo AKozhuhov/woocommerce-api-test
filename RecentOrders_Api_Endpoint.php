@@ -16,7 +16,7 @@ class RecentOrders_API_Endpoint{
 		add_action( 'init', array( $this, 'add_endpoint' ), 0 );
 	}	
 
-	public function add_query_vars($vars){
+	public function add_query_vars( $vars ){
 		$vars[] = 'wc_recent_orders';
 		return $vars;
 	}
