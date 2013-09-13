@@ -7,7 +7,7 @@ Usage: /?wc_recent_orders=<int>
 Author: Andrey Kozhuhov
 Author URL: http://www.cimpleo.com
 */
- 
+
 class RecentOrders_API_Endpoint{
 	
 	public function __construct(){
@@ -39,14 +39,14 @@ class RecentOrders_API_Endpoint{
 	protected function getRecentOrders( $count )
 	{		
 		$args = array(
-	    'numberposts' => $count,
-	    'orderby' => 'post_date',
-	    'order' => 'DESC',
-	    'post_type' => 'shop_order',
-	    );
+		'numberposts' => $count,
+		'orderby' => 'post_date',
+		'order' => 'DESC',
+		'post_type' => 'shop_order',
+		);
 
-	    $recent_posts = wp_get_recent_posts( $args );
-	    
+		$recent_posts = wp_get_recent_posts( $args );
+
 		foreach ( $recent_posts as $post ) {
 			$orders[] = new WC_Order( $post['ID'] );	
 		}
@@ -57,8 +57,8 @@ class RecentOrders_API_Endpoint{
 	protected function response( $msg, $orders = '' ){
 		$response['message'] = $msg;
 		header( 'content-type: application/json; charset=utf-8' );
-	    echo json_encode( $orders ) . '\n';
-	    exit;
+		echo json_encode( $orders ) . '\n';
+		exit;
 	}
 }
 new RecentOrders_API_Endpoint();
