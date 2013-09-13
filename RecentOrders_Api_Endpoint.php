@@ -23,7 +23,7 @@ class RecentOrders_API_Endpoint {
 
 	public function parse() {
 		global $wp;
-		if( isset( $wp->query_vars['wc_recent_orders'] ) ) {
+		if ( isset( $wp->query_vars['wc_recent_orders'] ) ) {
 			$this->handle();
 			exit;
 		}
