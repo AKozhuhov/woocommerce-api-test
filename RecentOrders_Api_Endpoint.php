@@ -32,7 +32,7 @@ class RecentOrders_API_Endpoint {
 	protected function handle() {
 		global $wp;
 		$count = $wp->query_vars['wc_recent_orders'];
-		$count || $count = get_option( 'posts_per_page' );
+		is_numeric( $count ) || $count = get_option( 'posts_per_page' );
 		$this->response( '200 OK', $this->getRecentOrders( $count ) );
 	}
 	
@@ -55,7 +55,7 @@ class RecentOrders_API_Endpoint {
 	protected function response( $msg, $orders = '' ) {
 		$response['message'] = $msg;
 		header( 'content-type: application/json; charset=utf-8' );
-		echo json_encode( $orders ) . '\n';
+		echo json_encode( $orders );
 		exit;
 	}
 }
